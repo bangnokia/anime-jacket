@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Anime Jacket",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
