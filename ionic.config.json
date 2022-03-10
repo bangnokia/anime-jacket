@@ -1,8 +1,9 @@
 {
-  "name": "Anime Jacket",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react",
-  "id": "1d7e4216"
+    "name": "Anime Jacket",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "react",
+    "id": "1d7e4216",
+    "domain": "animejacket.com"
 }
