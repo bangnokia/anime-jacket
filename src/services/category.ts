@@ -1,14 +1,17 @@
-import { get } from "./api";
+import api from "./api";
 
-export interface Category {
+export interface CategoryType {
     id: Number;
     name: String;
     count: Number;
 }
-const index = async function (): Promise<Category[]> {
-    const result = await get("/categories");
 
-    return result;
+const category = {
+    index: async function (): Promise<CategoryType[]> {
+        const result = await api.get("/categories");
+
+        return result;
+    },
 };
 
-export const category = { index: index };
+export default category;

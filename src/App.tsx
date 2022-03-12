@@ -2,7 +2,7 @@ import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/r
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
-import Page from './pages/Page';
+import Post from './pages/Post';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -28,30 +28,31 @@ import Category from "./pages/Category";
 setupIonicReact();
 
 const App: React.FC = () => {
-  return (
-    <IonApp>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
+    return (
+        <IonApp>
+            <IonReactRouter>
+                <IonSplitPane contentId="main">
+                    <Menu />
 
-            <Route path="/" exact={true}>
-              <Redirect to="/page/Inbox" />
-            </Route>
+                    <IonRouterOutlet id="main">
 
-            <Route path="/page/:name" exact={true}>
-              <Page />
-            </Route>
+                        <Route path="/" exact={true}>
+                            <Redirect to="/page/Inbox" />
+                        </Route>
 
-            <Route path='/category/:id' exact={false}>
-              <Category />
-            </Route>
+                        <Route path='/categories/:id' exact={false}>
+                            <Category />
+                        </Route>
 
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
-    </IonApp>
-  );
+                        <Route path='/posts/:id' exact={false}>
+                            <Post />
+                        </Route>
+
+                    </IonRouterOutlet>
+                </IonSplitPane>
+            </IonReactRouter>
+        </IonApp>
+    );
 };
 
 export default App;

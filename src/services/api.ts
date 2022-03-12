@@ -1,5 +1,6 @@
 const API_URL = "https://wordpress.test/wp-json/wp/v2";
-export const get = async function (endpoint: String, params?: Object): Promise<any> {
+
+const get = async function (endpoint: String, params?: Object): Promise<any> {
     let url = API_URL + endpoint;
 
     if (params) {
@@ -9,4 +10,8 @@ export const get = async function (endpoint: String, params?: Object): Promise<a
     const response = await fetch(url);
 
     return response.json();
+};
+
+export default {
+    get,
 };

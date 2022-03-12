@@ -14,7 +14,7 @@ import { useLocation } from 'react-router-dom';
 import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.css';
 import { useCallback, useEffect, useState } from 'react';
-import { category, Category } from '../services/category';
+import category, { CategoryType } from '../services/category';
 
 
 interface CategoryPage {
@@ -28,20 +28,18 @@ interface CategoryPage {
 const Menu: React.FC = () => {
     const [categories, setCategories] = useState<CategoryPage[]>([]);
 
-    console.log('categories', categories);
-
     useEffect(function () {
         category.index().then(items => {
             const cats = items.map(item => {
                 return {
                     id: item.id,
                     name: item.name,
-                    url: '/category/' + item.id,
+                    url: '/categories/' + item.id,
                     iosIcon: paperPlaneOutline,
                     mdIcon: paperPlaneSharp
                 } as CategoryPage;
             });
-            console.log('cats', cats)
+
             setCategories(cats);
         });
     }, [])

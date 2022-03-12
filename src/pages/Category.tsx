@@ -1,11 +1,16 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonImg, IonMenuButton, IonPage, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
 import { useParams } from 'react-router';
-import ExploreContainer from '../components/ExploreContainer';
 import './Page.css';
+import post, { PostType } from "../services/post";
+import { useState, useEffect } from 'react';
 
 const Page: React.FC = () => {
-
+    const [posts, setPosts] = useState<PostType[]>([]);
     const { id } = useParams<{ id: string; }>();
+
+    useEffect(() => {
+        post.list({ categories: id }).then(items => setPosts(items));
+    }, [id])
 
     return (
         <IonPage>
@@ -14,17 +19,30 @@ const Page: React.FC = () => {
                     <IonButtons slot="start">
                         <IonMenuButton />
                     </IonButtons>
-                    <IonTitle>{id}</IonTitle>
+                    <IonTitle></IonTitle>
                 </IonToolbar>
             </IonHeader>
 
             <IonContent fullscreen>
-                <IonHeader collapse="condense">
-                    <IonToolbar>
-                        <IonTitle size="large">{id}</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
-                <ExploreContainer name={id} />
+                {posts.map((post) => {
+                    return (
+                        <IonCard key={post.id} routerLink={post.url}>
+                            {post.featured_image &&
+                                <IonImg src={post.featured_image} style={{
+                                    maxHeight: '200px',
+                                    object: 'cover',
+                                    overflow: 'hidden',
+                                }} />
+                            }
+                            <IonCardHeader>
+                                <IonCardTitle>{post.id} {post.title}</IonCardTitle>
+                            </IonCardHeader>
+                            <IonCardContent>
+                                <p dangerouslySetInnerHTML={{ __html: post.excerpt }}></p>
+                            </IonCardContent>
+                        </IonCard>
+                    )
+                })}
             </IonContent>
         </IonPage>
     );
