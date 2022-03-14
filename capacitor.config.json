@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "Anime Jacket",
-	"webDir": "build",
-	"bundledWebRuntime": false
+    "appId": "com.animejacket.blog",
+    "appName": "Anime Jacket",
+    "webDir": "build",
+    "bundledWebRuntime": false
 }

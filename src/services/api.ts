@@ -1,4 +1,4 @@
-const API_URL = "https://wordpress.test/wp-json/wp/v2";
+const API_URL = "https://animejacket.com/wp-json/wp/v2";
 
 const get = async function (endpoint: String, params?: Object): Promise<any> {
     let url = API_URL + endpoint;
