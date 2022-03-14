@@ -8,6 +8,8 @@ const Post: React.FC = () => {
     const [post, setPost] = useState<PostType>();
     const { id } = useParams<{ id: string; }>();
 
+    console.log('post', id)
+
     useEffect(() => {
         postService.show(+id).then((result: PostType) => setPost(result));
     }, [id])

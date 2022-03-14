@@ -3,6 +3,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
 import Post from './pages/Post';
+import ListPost from "./pages/ListPost";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -23,11 +24,11 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-import Category from "./pages/Category";
 
 setupIonicReact();
 
 const App: React.FC = () => {
+    console.log('app')
     return (
         <IonApp>
             <IonReactRouter>
@@ -37,11 +38,11 @@ const App: React.FC = () => {
                     <IonRouterOutlet id="main">
 
                         <Route path="/" exact={true}>
-                            <Redirect to="/page/Inbox" />
+                            <ListPost />
                         </Route>
 
-                        <Route path='/categories/:id' exact={false}>
-                            <Category />
+                        <Route path='/categories/:id/posts' exact={false}>
+                            <ListPost />
                         </Route>
 
                         <Route path='/posts/:id' exact={false}>

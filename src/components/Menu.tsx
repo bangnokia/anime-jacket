@@ -34,7 +34,7 @@ const Menu: React.FC = () => {
                 return {
                     id: item.id,
                     name: item.name,
-                    url: '/categories/' + item.id,
+                    url: `/categories/${item.id}/posts`,
                     iosIcon: paperPlaneOutline,
                     mdIcon: paperPlaneSharp
                 } as CategoryPage;
@@ -50,8 +50,16 @@ const Menu: React.FC = () => {
         <IonMenu contentId="main" type="overlay">
             <IonContent>
                 <IonList id="inbox-list">
-                    <IonListHeader>Anime Jacket</IonListHeader>
-                    <IonNote>animejacket.com</IonNote>
+                    <IonItem routerLink='/' lines="none">
+                        <IonListHeader>
+                            Anime Jacket
+                            <div></div>
+                        </IonListHeader>
+                    </IonItem>
+                    <IonNote style={{
+                        marginLeft: '10px'
+                    }}>animejacket.com</IonNote>
+
                     {categories.map((appPage, index) => {
                         return (
                             <IonMenuToggle key={index} autoHide={false} >

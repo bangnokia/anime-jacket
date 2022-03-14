@@ -4,12 +4,15 @@ import './Page.css';
 import post, { PostType } from "../services/post";
 import { useState, useEffect } from 'react';
 
-const Page: React.FC = () => {
+const ListPost: React.FC = () => {
     const [posts, setPosts] = useState<PostType[]>([]);
-    const { id } = useParams<{ id: string; }>();
+    const { id } = useParams<{ id?: string; }>();
+
+    console.log('list post', id)
 
     useEffect(() => {
-        post.list({ categories: id }).then(items => setPosts(items));
+        const payload = id ? { categories: +id } : {};
+        post.list(payload).then(items => setPosts(items));
     }, [id])
 
     return (
@@ -48,4 +51,4 @@ const Page: React.FC = () => {
     );
 };
 
-export default Page;
+export default ListPost;
