@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IonPage, IonContent, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonText } from '@ionic/react';
+import { IonPage, IonContent, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonText } from '@ionic/react';
 import { useParams } from 'react-router';
 import { PostType } from '../services/post';
 import postService from '../services/post';
@@ -11,8 +11,6 @@ const Post: React.FC = () => {
     useEffect(() => {
         postService.show(+id).then((result: PostType) => setPost(result));
     }, [id])
-
-    console.log(post)
 
     if (!post) {
         return <IonPage></IonPage>;

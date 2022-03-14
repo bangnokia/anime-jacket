@@ -12,6 +12,8 @@ const get = async function (endpoint: String, params?: Object): Promise<any> {
     return response.json();
 };
 
-export default {
-    get,
+const api = {
+    get: get,
 };
+
+export default api;
