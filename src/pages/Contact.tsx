@@ -17,9 +17,10 @@ export default function Contact() {
                     padding: '2rem'
                 }}>
                     <h1>Anime Jacket</h1>
+                    <p>You can contact us through our website or our email address</p>
                     <ul>
-                        <li>Website: https://animejacket.com</li>
-                        <li>Email: contact@animejacket.com</li>
+                        <li>Website: <a href="https://animejacket.com/contact-us">https://animejacket.com/contact-us</a></li>
+                        <li>Email: <a href="mailto:contact@animejacket.com">contact@animejacket.com</a></li>
                     </ul>
                 </div>
             </IonContent>
