@@ -70,6 +70,12 @@ const Menu: React.FC = () => {
                             </IonMenuToggle>
                         );
                     })}
+                    <IonMenuToggle key={`page-contact`} autoHide={false} >
+                        <IonItem routerLink="/contact" routerDirection="none" lines="none" detail={false}>
+                            <IonIcon slot="start" ios={paperPlaneOutline} md={paperPlaneSharp} />
+                            <IonLabel>Contact</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
                 </IonList>
             </IonContent>
         </IonMenu>

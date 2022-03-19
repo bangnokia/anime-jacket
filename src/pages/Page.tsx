@@ -6,8 +6,6 @@ const Page: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();
 
-  console.log('name', name)
-
   return (
     <IonPage>
       <IonHeader>

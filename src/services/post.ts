@@ -8,39 +8,58 @@ export interface PostType {
     excerpt: string;
     featured_image: string | undefined;
     url: string;
+    _embedded: {
+        author: {
+            name: string;
+        };
+    };
+    link: string;
 }
 
 const post = {
     list: async function (params: Object = {}): Promise<PostType[]> {
         const result = await api.get("/posts", { ...{ per_page: 25, _embed: true }, ...params });
 
-        return result.map((post: any) => {
+        return result.map((postData: any) => {
             return {
-                id: post.id,
-                title: post.title.rendered,
-                date: post.date,
-                content: post.content.rendered,
-                excerpt: post.excerpt.rendered,
-                featured_image: post._embedded["wp:featuredmedia"]
-                    ? post._embedded["wp:featuredmedia"][0]?.source_url
+                id: postData.id,
+                title: postData.title.rendered,
+                date: postData.date,
+                content: postData.content.rendered,
+                excerpt: postData.excerpt.rendered,
+                featured_image: postData._embedded["wp:featuredmedia"]
+                    ? postData._embedded["wp:featuredmedia"][0]?.source_url
                     : null,
-                url: "/posts/" + post.id,
+                url: "/posts/" + postData.id,
+                _embedded: {
+                    author: {
+                        name: postData._embedded.author[0].name,
+                    },
+                },
+                link: postData.link,
             } as PostType;
         });
     },
 
     show: async function (id: number): Promise<PostType> {
-        const result = await api.get("/posts/" + id, { _embed: true });
+        const postData = await api.get("/posts/" + id, { _embed: true });
+        console.log(postData);
         return {
-            id: result.id,
-            title: result.title.rendered,
-            date: result.date,
-            content: result.content.rendered,
-            excerpt: result.excerpt.rendered,
-            featured_image: result._embedded["wp:featuredmedia"]
-                ? result._embedded["wp:featuredmedia"][0]?.source_url
+            id: postData.id,
+            title: postData.title.rendered,
+            date: postData.date,
+            content: postData.content.rendered,
+            excerpt: postData.excerpt.rendered,
+            featured_image: postData._embedded["wp:featuredmedia"]
+                ? postData._embedded["wp:featuredmedia"][0]?.source_url
                 : null,
-            url: "/posts/" + result.id,
+            url: "/posts/" + postData.id,
+            _embedded: {
+                author: {
+                    name: postData._embedded.author[0].name,
+                },
+            },
+            link: postData.link,
         } as PostType;
     },
 };

@@ -8,8 +8,6 @@ const ListPost: React.FC = () => {
     const [posts, setPosts] = useState<PostType[]>([]);
     const { id } = useParams<{ id?: string; }>();
 
-    console.log('list post', id)
-
     useEffect(() => {
         const payload = id ? { categories: +id } : {};
         post.list(payload).then(items => setPosts(items));

@@ -4,6 +4,7 @@ import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
 import Post from './pages/Post';
 import ListPost from "./pages/ListPost";
+import Contact from './pages/Contact';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -39,6 +40,10 @@ const App: React.FC = () => {
 
                         <Route path="/" exact={true}>
                             <ListPost />
+                        </Route>
+
+                        <Route path="/contact" exact={true}>
+                            <Contact />
                         </Route>
 
                         <Route path='/categories/:id/posts' exact={false}>
